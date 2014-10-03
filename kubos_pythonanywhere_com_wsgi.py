@@ -10,12 +10,10 @@ from server import kubos
 from server import static_file_handler
 
 routes = [
-    ('/', kubos.KubosBoxesApp),
-    ('/kubos', kubos.KubosApp),
-    ('/solids', kubos.KubosApp),
-    ('/boxes', kubos.KubosBoxesApp),
-    ('/blocks', kubos.KubosBoxesApp),
-    ('/kubos_boxes', kubos.KubosBoxesApp),
+    ('/', kubos.KubosBlocksApp),
+    ('/solids', kubos.KubosSolidsApp),
+    ('/boxes', kubos.KubosBlocksApp),
+    ('/blocks', kubos.KubosBlocksApp),
     ('/upload_stl', kubos.UploadStl),
     ('/(.+)', static_file_handler.StaticFileHandler),
 ]

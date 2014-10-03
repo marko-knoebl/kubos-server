@@ -16,14 +16,13 @@ from keys import resource_owner_secret
 
 logging.basicConfig(level=logging.INFO)
 
-class KubosApp(BaseHandler):
-    def get(self):
-        response = open('/var/www/client/index.html').read()
-        self.response.write(response)
-
-class KubosBoxesApp(BaseHandler):
+class KubosBlocksApp(BaseHandler):
     def get(self):
         self.response.write(open('/var/www/client/kubos_boxes.html').read())
+
+class KubosSolidsApp(BaseHandler):
+    def get(self):
+        self.response.write(open('/var/www/client/kubos_solids.html').read())
 
 class UploadStl(BaseHandler):
     """This request handler will receive an stl file from the client and
@@ -52,6 +51,7 @@ class UploadStl(BaseHandler):
                 'materials': materials
             }),
             auth = oauth,
+            headers = {'access-control-allow-origin': '*'},
         )
         logging.info('File uploaded to shapeways. Status Code: ' + str(r.status_code))
         shapeways_response = json.loads(r.text)
